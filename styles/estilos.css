@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 /*Paletas y Variables */
@@ -486,4 +487,507 @@ h1 {
   #pokegrid { 
     grid-template-columns: repeat(2, 1fr); 
   }
+=======
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* ── Paletas y Variables (Formato Consola Retro) ────────── */
+:root {
+  --bg-app:      #1a1a2e;
+  --bg-card:     #16213e;
+  --bg-header:   #0f3460;
+  --accent:      #e94560;
+  --text-main:   #eaeaea;
+  --text-muted:  #8892a4;
+  --border:      #000000; /* Negro sólido para simular pixeles de contorno */
+  --modal-bg:    #12122a;
+
+  /* Colores de marca clásicos */
+  --pokemon-yellow: #ffde00;
+  --pokemon-blue:   #3b4cca;
+  --pokemon-red:    #ff0505;
+
+  /* Colores de Tipos (GBA/DS nítidos) */
+  --fire:     #f4813a; --water:    #6493eb; --grass:    #74cb48;
+  --electric: #f9cf30; --psychic:  #f85888; --ice:      #98d8d8;
+  --dragon:   #7038f8; --dark:     #705848; --fairy:    #ee99ac;
+  --normal:   #a8a878; --fighting: #c03028; --flying:   #a890f0;
+  --poison:   #a040a0; --ground:   #e0c068; --rock:     #b8a038;
+  --bug:      #a8b820; --ghost:    #705898; --steel:    #b8b8d0;
+}
+
+/* ── Base ─────────────────────────────────────────────── */
+body {
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  font-family: 'Press Start 2P', 'Courier New', monospace;
+  font-size: 11px;
+  line-height: 1.6;
+  min-height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  color: var(--pokemon-yellow);
+  /* Sombra de texto pixelada con bloques rígidos */
+  text-shadow:
+    3px 3px 0 var(--pokemon-blue),
+    -3px -3px 0 var(--pokemon-blue),
+    3px -3px 0 var(--pokemon-blue),
+    -3px 3px 0 var(--pokemon-blue);
+  font-weight: bold;
+  font-size: 2rem;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 2px;
+  margin: 0;
+}
+
+/* ── Header & Selectors ───────────────────────────────── */
+.poke-header {
+  background: var(--bg-header);
+  border-bottom: 4px solid var(--border);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  box-shadow: 0 4px 0px rgba(0,0,0,0.4);
+}
+
+.poke-logo {
+  height: 52px;
+  filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.5));
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.gen-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gen-selector label, .form-label {
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-main);
+  text-shadow: 2px 2px 0px #000;
+}
+
+#genSelect, .form-select {
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 3px solid var(--border);
+  border-radius: 0px; /* Esquinas rectas de consola antigua */
+  padding: 8px 32px 8px 12px;
+  font-size: 11px;
+  font-family: 'Press Start 2P', monospace;
+  cursor: pointer;
+  appearance: none;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+  /* Icono de flecha en bloque pixelado */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0h10L5 5z' fill='%23eaeaea'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+/* ── Grid ─────────────────────────────────────────────── */
+#pokegrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 18px;
+  padding: 24px;
+}
+
+/* ── Cards (Unificadas con efecto de botón físico) ────── */
+.poke-card, .card-pokemon {
+  background: var(--bg-card);
+  border: 4px solid var(--border);
+  border-radius: 0px;
+  text-align: center;
+  padding: 16px 8px 12px;
+  cursor: pointer;
+  /* Movimientos instantáneos sin transiciones fluidas modernas */
+  transition: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 5px 5px 0px rgba(0,0,0,0.6);
+}
+
+.poke-card::before, .card-pokemon::before {
+  content: '';
+  position: absolute; inset: 0;
+  /* Simulación sutil del reflejo de pantalla LCD antigua */
+  background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.poke-card:hover, .card-pokemon:hover {
+  /* Efecto de clic o presión física en eje de pixeles */
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--accent);
+}
+
+.poke-num {
+  font-size: 8px;
+  color: var(--text-muted);
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.poke-card img, .card-pokemon img {
+  width: 90px; 
+  height: 90px;
+  object-fit: contain;
+  margin: auto;
+  /* Evita el desenfoque bilineal del navegador manteniendo el Pixel-Art puro */
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.poke-card .poke-name, .card-body h6 {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 8px;
+  color: var(--text-main);
+  letter-spacing: 0.5px;
+}
+
+.card-body {
+  background: rgba(0, 0, 0, 0.25);
+  margin-top: 8px;
+  padding: 6px;
+  border-top: 3px dashed var(--border);
+}
+
+.card-body h6:first-child {
+  color: var(--text-muted);
+}
+
+/* ── Skeleton Loader Intermitente ─────────────────────── */
+.skeleton {
+  background: var(--bg-card);
+  border: 4px solid var(--border);
+  border-radius: 0px;
+  padding: 16px 8px 12px;
+  /* Parpadeo brusco estilo refresco de pantalla antigua */
+  animation: retroPulse 0.8s steps(2, start) infinite;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+}
+
+.skeleton-img  { 
+  width: 90px; 
+  height: 90px; 
+  background: rgba(0,0,0,0.4); 
+  border: 3px dashed var(--text-muted); 
+  margin: auto; 
+}
+
+.skeleton-txt  { 
+  height: 10px; 
+  background: var(--text-muted); 
+  margin: 12px auto 0; 
+  width: 70%; 
+}
+
+@keyframes retroPulse { 
+  0%, 100% { opacity: 1; } 
+  50% { opacity: 0.35; } 
+}
+
+/* ── Modales & Cuadros de Diálogo RPG ─────────────────── */
+#detailOverlay, .modal-custom {
+  display: none;
+  position: fixed; 
+  inset: 0;
+  background: rgba(0,0,0,.85);
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+#detailOverlay.show, .modal-custom.show { 
+  display: flex; 
+}
+
+#detailModal, .modal-content-custom {
+  background: var(--modal-bg);
+  /* Borde doble icónico de las cajas de texto de Pokémon Rojo/Azul/Oro */
+  border: 6px double var(--text-main); 
+  outline: 4px solid #000000;
+  border-radius: 0px;
+  width: 100%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 8px 8px 0px rgba(0,0,0,0.7);
+  padding: 24px;
+  /* Animación sin interpolación suave */
+  animation: retroPop 0.08s steps(2, start);
+}
+
+@keyframes retroPop {
+  from { transform: scale(0.96); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+.modal-close, .cerrar {
+  position: absolute; 
+  top: 12px; 
+  right: 16px;
+  background: none; 
+  border: none;
+  color: var(--text-main); 
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px; 
+  font-weight: bold;
+  cursor: pointer; 
+  line-height: 1;
+}
+
+.modal-close:hover, .cerrar:hover { 
+  color: var(--accent); 
+}
+
+.modal-banner {
+  background: var(--bg-header);
+  border: 4px solid var(--border);
+  padding: 20px 16px;
+  text-align: center;
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.modal-banner h2, #detallePokemon h2 {
+  font-size: 14px; 
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--pokemon-yellow);
+  margin: 0 0 6px;
+  text-shadow: 2px 2px 0px var(--pokemon-blue);
+  letter-spacing: 1px;
+}
+
+.modal-banner .poke-id { 
+  color: var(--text-muted); 
+  font-size: 9px; 
+}
+
+/* ── Detalles e Información Interna ───────────────────── */
+.modal-img, .detalle-img {
+  width: 150px; 
+  height: 150px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 12px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.5));
+}
+
+.modal-body-inner, #detallePokemon { 
+  padding: 12px 0; 
+  font-size: 10px;
+}
+
+#detallePokemon p {
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.info-row {
+  display: flex; 
+  gap: 16px; 
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px dashed var(--border);
+  padding: 12px;
+}
+
+.info-item { 
+  flex: 1; 
+  min-width: 100px; 
+}
+
+.info-item .label, #detallePokemon strong {
+  font-size: 9px; 
+  font-weight: 700;
+  text-transform: uppercase; 
+  letter-spacing: .05em;
+  color: var(--accent); 
+  margin-bottom: 6px;
+  display: block;
+}
+
+.info-item .value { 
+  font-size: 10px; 
+  font-weight: 600; 
+  color: var(--text-main);
+}
+
+.section-title {
+  font-size: 9px; 
+  font-weight: 700;
+  text-transform: uppercase; 
+  letter-spacing: .1em;
+  color: var(--pokemon-yellow); 
+  margin: 20px 0 10px;
+  border-bottom: 4px solid var(--border); 
+  padding-bottom: 6px;
+}
+
+.generacion-badge {
+  background: var(--bg-header);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 0px;
+  border: 3px solid var(--border);
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 10px;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.4);
+}
+
+/* ── Medallas de Tipos e Interfaz de Batalla ──────────── */
+.badge-type, .tipo-badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 0px;
+  border: 2px solid #000000;
+  font-size: 8px; 
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 4px 6px 4px 0;
+  color: #ffffff;
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.5);
+}
+
+/* Forzar colores asignados a variables de tipografías retro */
+.type-fire     { background: var(--fire) !important; }
+.type-water    { background: var(--water) !important; }
+.type-grass    { background: var(--grass) !important; color:#000 !important; }
+.type-electric { background: var(--electric) !important; color:#000 !important; }
+.type-psychic  { background: var(--psychic) !important; }
+.type-ice      { background: var(--ice) !important; color:#000 !important; }
+.type-dragon   { background: var(--dragon) !important; }
+.type-dark     { background: var(--dark) !important; }
+.type-fairy    { background: var(--fairy) !important; color:#000 !important; }
+.type-normal   { background: var(--normal) !important; color:#000 !important; }
+.type-fighting { background: var(--fighting) !important; }
+.type-flying   { background: var(--flying) !important; color:#000 !important; }
+.type-poison   { background: var(--poison) !important; }
+.type-ground   { background: var(--ground) !important; color:#000 !important; }
+.type-rock     { background: var(--rock) !important; }
+.type-bug      { background: var(--bug) !important; }
+.type-ghost    { background: var(--ghost) !important; }
+.type-steel    { background: var(--steel) !important; color:#000 !important; }
+
+.badge-ability {
+  display: inline-block;
+  background: var(--bg-app);
+  border: 2px solid var(--border);
+  border-radius: 0px;
+  color: var(--text-main);
+  padding: 6px 10px;
+  font-size: 9px;
+  text-transform: uppercase;
+  margin: 4px 6px 4px 0;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.4);
+}
+
+.moves-wrap {
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 6px;
+}
+
+.badge-move {
+  background: rgba(0,0,0,0.4);
+  border: 2px solid var(--border);
+  color: var(--text-main);
+  padding: 5px 8px;
+  border-radius: 0px;
+  font-size: 8px;
+  text-transform: uppercase;
+}
+
+/* ── Spinner Cuadrado 8-Bits ──────────────────────────── */
+#loadingSpinner {
+  display: none;
+  text-align: center; 
+  padding: 60px;
+}
+
+.spinner-ring {
+  width: 32px; 
+  height: 32px;
+  border: 4px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 0%; /* Cuadrado simulando rotación de sprites clásicos */
+  animation: retroSpin .6s steps(4, end) infinite;
+  margin: auto;
+}
+
+@keyframes retroSpin { 
+  to { transform: rotate(360deg); } 
+}
+
+/* ── Adaptabilidad Móvil (Responsive) ─────────────────── */
+@media (max-width: 991px) {
+  #pokegrid { 
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); 
+  }
+}
+
+@media (max-width: 768px) {
+  h1 { 
+    font-size: 1.4rem; 
+  }
+  #detailModal, .modal-content-custom { 
+    width: 95%; 
+    padding: 16px; 
+  }
+  .modal-img, .detalle-img { 
+    width: 120px; 
+    height: 120px; 
+  }
+}
+
+@media (max-width: 576px) {
+  #pokegrid { 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 8px; 
+    padding: 12px; 
+  }
+  .poke-card, .card-pokemon { 
+    padding: 10px 4px; 
+    border-width: 3px; 
+  }
+  .poke-card img, .card-pokemon img { 
+    width: 65px; 
+    height: 65px; 
+  }
+  .poke-name, .card-body h6 { 
+    font-size: 8px; 
+  }
+  .badge-type, .tipo-badge { 
+    font-size: 7px; 
+    padding: 4px 6px; 
+  }
+}
+
+@media (max-width: 380px) {
+  #pokegrid { 
+    grid-template-columns: repeat(2, 1fr); 
+  }
+>>>>>>> origin/just_in
 }
