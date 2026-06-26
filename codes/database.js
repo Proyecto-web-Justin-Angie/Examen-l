@@ -1,44 +1,96 @@
-var DB_NAME = 'pokedexDB';
-var DB_VERSION = 1;
-var db = null;
+// Declaración de variables globales de conexión
+var db;
+var dbName = "pokedexDB";
+var dbVersion = 1;
 
-function initDB(callback) {
-  var request = indexedDB.open(DB_NAME, DB_VERSION);
+// Inicialización de la IndexedDB
+function iniciarBaseDatos(onListo) {
+  var solicitud = indexedDB.open(dbName, dbVersion);
 
-  request.onupgradeneeded = function(e) {
-    var database = e.target.result;
-    if (!database.objectStoreNames.contains('entrenadores')) {
-      database.createObjectStore('entrenadores', { keyPath: 'id', autoIncrement: true });
+  solicitud.onerror = function (evento) {
+    console.error("Error al abrir la base de datos:", evento.target.error);
+  };
+
+  solicitud.onsuccess = function (evento) {
+    db = evento.target.result;
+    if (onListo) onListo();
+  };
+
+  solicitud.onupgradeneeded = function (evento) {
+    var base = evento.target.result;
+
+    // Almacén para los Perfiles de Entrenadores
+    if (!base.objectStoreNames.contains("entrenadores")) {
+      base.createObjectStore("entrenadores", {
+        keyPath: "id",
+        autoIncrement: true,
+      });
     }
-    if (!database.objectStoreNames.contains('equipos')) {
-      database.createObjectStore('equipos', { keyPath: 'id', autoIncrement: true });
+
+    // Almacén para los Equipos Pokémon
+    if (!base.objectStoreNames.contains("equipos")) {
+      base.createObjectStore("equipos", {
+        keyPath: "id",
+        autoIncrement: true,
+      });
     }
   };
+}
 
-  request.onsuccess = function(e) {
-    db = e.target.result;
-    if (callback) callback(db);
+// Métodos requeridos: Agregar y Consultar
+function agregarDato(storeName, data, onSuccess, onError) {
+  if (!db) {
+    if (onError) onError("La base de datos no está inicializada.");
+    return;
+  }
+
+  var transaccion = db.transaction([storeName], "readwrite");
+  var almacen = transaccion.objectStore(storeName);
+  var peticion = almacen.add(data);
+
+  peticion.onsuccess = function (evento) {
+    if (onSuccess) onSuccess(evento.target.result); // Devuelve el ID generado
   };
 
-  request.onerror = function() {
-    console.error('Error abriendo IndexedDB');
+  peticion.onerror = function (evento) {
+    if (onError) onError(evento.target.error);
   };
 }
 
-function agregarRegistro(store, data, callback) {
-  var tx = db.transaction(store, 'readwrite');
-  var req = tx.objectStore(store).add(data);
-  req.onsuccess = function() { if (callback) callback(req.result); };
+function obtenerTodos(storeName, onSuccess, onError) {
+  if (!db) {
+    if (onError) onError("La base de datos no está inicializada.");
+    return;
+  }
+
+  var transaccion = db.transaction([storeName], "readonly");
+  var almacen = transaccion.objectStore(storeName);
+  var peticion = almacen.getAll();
+
+  peticion.onsuccess = function (evento) {
+    if (onSuccess) onSuccess(evento.target.result);
+  };
+
+  peticion.onerror = function (evento) {
+    if (onError) onError(evento.target.error);
+  };
 }
 
-function obtenerTodos(store, callback) {
-  var tx = db.transaction(store, 'readonly');
-  var req = tx.objectStore(store).getAll();
-  req.onsuccess = function() { callback(req.result); };
-}
+function obtenerPorId(storeName, id, onSuccess, onError) {
+  if (!db) {
+    if (onError) onError("La base de datos no está inicializada.");
+    return;
+  }
 
-function obtenerPorId(store, id, callback) {
-  var tx = db.transaction(store, 'readonly');
-  var req = tx.objectStore(store).get(id);
-  req.onsuccess = function() { callback(req.result); };
+  var transaccion = db.transaction([storeName], "readonly");
+  var almacen = transaccion.objectStore(storeName);
+  var peticion = almacen.get(Number(id));
+
+  peticion.onsuccess = function (evento) {
+    if (onSuccess) onSuccess(evento.target.result);
+  };
+
+  peticion.onerror = function (evento) {
+    if (onError) onError(evento.target.error);
+  };
 }
