@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registrar Equipo - Liga Pokémon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../styles/estilos.css" />
+  </head>
+  <body>
+    <header class="poke-header">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg" alt="Pokémon" class="poke-logo" />
+      <nav class="gen-selector">
+        <a href="../index.html" class="btn btn-dark btn-retro">Pokédex</a>
+        <a href="entrenadores.html" class="btn btn-dark btn-retro">Entrenadores</a>
+        <a href="equiposPokemon.html" class="btn btn-danger btn-retro">Equipos</a>
+      </nav>
+    </header>
+
+    <div class="container mb-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+          <div class="form-box-retro">
+            <div class="modal-banner">
+              <h2>NUEVA ALINEACIÓN</h2>
+              <div class="poke-id">REGISTRO OFICIAL DE EQUIPOS</div>
+            </div>
+
+            <form id="formEquipo">
+              <div class="row">
+                <div class="col-12 col-md-6 mb-3">
+                  <label for="nombreEquipo" class="form-label">Nombre del Equipo</label>
+                  <input type="text" class="form-control" id="nombreEquipo" placeholder="Ej. Escuadrón Kanto" required />
+                </div>
+
+                <div class="col-12 col-md-6 mb-3">
+                  <label for="selectEntrenador" class="form-label">Entrenador Encargado</label>
+                  <select class="form-select" id="selectEntrenador" required>
+                    <option value="">Seleccione...</option>
+                  </select>
+                </div>
+
+                <div class="col-12 mb-3">
+                  <label for="fotoEquipo" class="form-label">URL de la Imagen del Grupo</label>
+                  <input type="url" class="form-control" id="fotoEquipo" placeholder="https://..." required />
+                </div>
+              </div>
+
+              <div class="form-section-divider">
+                Integrantes (Máximo 6 Pokémon)
+              </div>
+
+              <div class="row row-cols-1 row-cols-sm-2 g-3">
+                <div class="col posicion-relativa"><label class="form-label">Pokémon 1</label><input type="text" class="form-control poke-input" id="poke1" placeholder="Nombre o ID" autocomplete="off" required /></div>
+                <div class="col posicion-relativa"><label class="form-label">Pokémon 2</label><input type="text" class="form-control poke-input" id="poke2" placeholder="Nombre o ID" autocomplete="off" required /></div>
+                <div class="col posicion-relativa"><label class="form-label">Pokémon 3</label><input type="text" class="form-control poke-input" id="poke3" placeholder="Nombre o ID" autocomplete="off" required /></div>
+                <div class="col posicion-relativa"><label class="form-label">Pokémon 4</label><input type="text" class="form-control poke-input" id="poke4" placeholder="Nombre o ID" autocomplete="off" required /></div>
+                <div class="col posicion-relativa"><label class="form-label">Pokémon 5</label><input type="text" class="form-control poke-input" id="poke5" placeholder="Opcional" autocomplete="off" /></div>
+                <div class="col posicion-relativa"><label class="form-label">Pokémon 6</label><input type="text" class="form-control poke-input" id="poke6" placeholder="Opcional" autocomplete="off" /></div>
+              </div>
+
+              <div class="d-flex gap-3 mt-4">
+                <a href="equiposPokemon.html" class="btn btn-dark btn-action-retro btn-back-retro w-50 text-center pt-2">VOLVER</a>
+                <button type="button" id="btnGuardarEquipo" class="btn btn-action-retro btn-save-retro w-50">REGISTRAR</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../codes/database.js"></script>
+    <script src="../codes/equiposPokemon.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
