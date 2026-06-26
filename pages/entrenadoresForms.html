@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agregar Entrenador - Liga Pokémon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../styles/estilos.css" />
+  </head>
+  <body>
+    <header class="poke-header">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg" alt="Pokémon" class="poke-logo" />
+
+      <nav class="gen-selector">
+        <a href="../index.html" class="btn btn-dark btn-retro">Pokédex</a>
+        <a href="entrenadores.html" class="btn btn-danger btn-retro">Entrenadores</a>
+        <a href="equiposPokemon.html" class="btn btn-dark btn-retro">Equipos</a>
+      </nav>
+    </header>
+
+    <div class="container mb-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <div class="form-box-retro">
+            <div class="modal-banner">
+              <h2 class="text-white">NUEVO ENTRENADOR</h2>
+              <div class="poke-id-yellow">REGISTRO OFICIAL DE LA LIGA</div>
+            </div>
+
+            <form id="formEntrenador">
+              <div class="mb-3">
+                <label for="nombreEntrenador" class="form-label subtitulo-blanco">Nombre y Apellidos</label>
+                <input type="text" class="form-control input-retro" id="nombreEntrenador" placeholder="Ej: Red Ketchum" required />
+              </div>
+
+              <div class="mb-3">
+                <label for="sexoEntrenador" class="form-label subtitulo-blanco">Sexo</label>
+                <select class="form-select input-retro" id="sexoEntrenador" required>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Femenino">Femenino</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="residenciaEntrenador" class="form-label subtitulo-blanco">Lugar de Residencia</label>
+                <input type="text" class="form-control input-retro" id="residenciaEntrenador" placeholder="Ej: Pueblo Paleta" required />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label subtitulo-blanco">Fotografía</label>
+                <input type="url" class="form-control mb-2 input-retro" id="fotoEntrenador" placeholder="Ej: https://ejemplo.com/foto.png" />
+                <input type="file" class="form-control input-retro" id="fotoArchivoEntrenador" accept="image/*" />
+              </div>
+
+              <div class="d-flex gap-3 mt-4">
+                <a href="entrenadores.html" class="btn btn-dark btn-back-retro w-50 text-center pt-2">
+                  VOLVER
+                </a>
+                <button type="button" id="btnGuardarEntrenador" class="btn btn-save-retro w-50">
+                  GUARDAR
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../codes/database.js"></script>
+    <script src="../codes/entrenadores.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
