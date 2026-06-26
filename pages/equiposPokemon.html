@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alineaciones de la Liga - Pokémon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../styles/estilos.css" />
+  </head>
+  <body>
+    <header class="poke-header">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg" alt="Pokémon" class="poke-logo" />
+      <nav class="gen-selector">
+        <a href="../index.html" class="btn btn-dark btn-retro">Pokédex</a>
+        <a href="entrenadores.html" class="btn btn-dark btn-retro">Entrenadores</a>
+        <a href="equiposPokemon.html" class="btn btn-danger btn-retro">Equipos</a>
+      </nav>
+    </header>
+
+    <div class="container mt-4 text-center">
+      <h1 class="titulo-entrenadores">Equipos de la Liga</h1>
+      <p class="subtitulo-blanco">Selecciona un equipo para ver su alineación completa</p>
+      <a href="equiposForms.html" class="btn btn-danger btn-retro mt-2">+ CREAR NUEVO EQUIPO</a>
+    </div>
+
+    <div class="container mt-5">
+      <div id="listaEquipos" class="row g-4 justify-content-center"></div>
+    </div>
+
+    <div id="modalDetalle" class="modal fade" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content-custom">
+          <div class="modal-banner">
+            <button type="button" class="modal-close" data-bs-dismiss="modal">&times;</button>
+            <h2 id="detNombre" class="nombre-equipo">NOMBRE EQUIPO</h2>
+            <div class="poke-id-yellow">FICHA DE ALINEACIÓN</div>
+           </div>
+
+          <div class="modal-body">
+            <img id="detImagen" src="" alt="Equipo" class="modal-img d-block mx-auto mb-3">
+            
+            <div class="text-center mb-3">
+              <div id="detEntrenador" class="id-entrenador-blanco"> - </div>
+            </div>
+
+            <h3 class="section-title">Integrantes de Combate</h3>
+            <div id="detPokemones" class="modal-poke-grid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="../codes/database.js"></script>
+    <script src="../codes/equiposPokemon.js"></script>
+  </body>
+</html>
