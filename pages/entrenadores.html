@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entrenadores - Liga Pokémon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../styles/estilos.css" />
+  </head>
+  <body>
+    <header class="poke-header">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg"
+        alt="Pokémon"
+        class="poke-logo"
+      />
+      <nav class="gen-selector">
+        <a href="../index.html" class="btn btn-dark btn-retro">Pokédex</a>
+        <a href="entrenadores.html" class="btn btn-danger btn-retro">Entrenadores</a>
+        <a href="equiposPokemon.html" class="btn btn-dark btn-retro">Equipos</a>
+      </nav>
+    </header>
+
+    <div class="container mt-4 text-center">
+      <h1 class="titulo-entrenadores">Entrenadores</h1>
+      <p class="subtitulo-blanco">Administra los perfiles de los entrenadores Pokémon</p>
+      
+      <a href="entrenadoresForms.html" class="btn btn-primary btn-retro mt-3">
+        + AGREGAR ENTRENADOR
+      </a>
+    </div>
+
+    <div id="listaEntrenadores" class="container mt-4 row g-4 justify-content-center"></div>
+    <div id="detailOverlay" role="dialog" aria-modal="true" aria-label="Detalle del Entrenador">
+      <div id="detailModal" class="modal-content-custom">
+        <button class="modal-close" id="closeModal">&times;</button>
+      
+        <div class="modal-banner" id="modalBanner">
+          <p class="poke-id-yellow" id="modalId"></p>
+          <img id="modalImg" class="modal-img" src="" alt="Entrenador"/>
+          <h2 id="modalName"></h2>
+        </div>
+        <div class="modal-body-inner"></div>
+      </div>
+    </div>
+
+    <script src="../codes/database.js"></script>
+    <script src="../codes/entrenadores.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
